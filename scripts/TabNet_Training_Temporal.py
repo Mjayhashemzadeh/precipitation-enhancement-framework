@@ -251,7 +251,8 @@ class TemporalPrecipitationModelingPipeline:
             df_corrected[f'{remote_col}_corrected'] = df[remote_col] * scaling_factor
         
         return df_corrected
-    
+
+    # Updated temporal_split_data Function
     def temporal_split_data(self, df):
         train_years = self.config['train_years']
         test_years = self.config['test_years']
@@ -488,3 +489,4 @@ if __name__ == "__main__":
     pipeline = TemporalPrecipitationModelingPipeline()
 
     model, metrics = pipeline.run_temporal_pipeline(remote_source='ERA5')
+
