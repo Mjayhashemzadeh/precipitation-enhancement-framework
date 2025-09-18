@@ -218,7 +218,7 @@ if __name__ == "__main__":
     # Create pipeline with extended config for tuning
     config = {
         'file_mapping': {
-            'ground': 'ground_precipitation_2014.xlsx',
+            'ground': 'ground_precipitation_2024.xlsx',
             'remote': {
                 'CHIRPS': 'chrips-precip-monthly.xlsx',
                 'ERA5': 'era5_precip_2024_1km.xlsx',
@@ -252,4 +252,5 @@ if __name__ == "__main__":
     tuning_results = integrate_with_pipeline(pipeline)
     
     # Train final model with tuned parameters
+
     model = pipeline.run_pipeline(remote_source='ERA5')
