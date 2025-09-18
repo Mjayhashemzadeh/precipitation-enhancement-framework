@@ -63,7 +63,6 @@ This ensures the script runs correctly even with limited data.
   While the paper describes predicted precipitation rasters for 2014–2024 (both TabNet and XGBoost),
   we include here only the **132 TabNet prediction rasters** (monthly, 2014–2024), packaged as a 
   single ZIP file (~25 MB). This provides a complete set of model outputs in a lightweight format.
-  
   XGBoost rasters are not included due to size, but can be reproduced using the provided scripts.
   ---
   
