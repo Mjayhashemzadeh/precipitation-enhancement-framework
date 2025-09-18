@@ -256,25 +256,29 @@ class TemporalPrecipitationModelingPipeline:
         train_years = self.config['train_years']
         test_years = self.config['test_years']
         
-        # Filter based on years
+        # Primary split (study setup: 2014–2022 vs 2023–2024)
         train_df = df[df['year'].isin(train_years)].copy()
         test_df = df[df['year'].isin(test_years)].copy()
         
-        # If sample dataset only has 2024 → fallback split
+        # Fallback for sample dataset (only 2024 available)
         if train_df.empty:
             self.log("⚠️ No training data found for configured years. Using fallback split for sample dataset.")
-            # Example: split 2024 by first/second half of the year
-            cutoff = df['date'].median()
-            train_df = df[df['date'] <= cutoff].copy()
-            test_df = df[df['date'] > cutoff].copy()
-            train_years = [df['year'].min()]
-            test_years = [df['year'].max()]
+            
+            # Sort by year + month to simulate chronology
+            df_sorted = df.sort_values(["year", "month"]).reset_index(drop=True)
+            
+            cutoff = len(df_sorted) // 2  # first half = train, second half = test
+            train_df = df_sorted.iloc[:cutoff].copy()
+            test_df = df_sorted.iloc[cutoff:].copy()
+            
+            train_years = [train_df["year"].min()]
+            test_years = [test_df["year"].max()]
         
         self.log(f"📊 Training data: {len(train_df)} records ({min(train_years)}-{max(train_years)})")
         self.log(f"📊 Test data: {len(test_df)} records ({min(test_years)}-{max(test_years)})")
         
-        train_stations = set(train_df['station'].unique())
-        test_stations = set(test_df['station'].unique())
+        train_stations = set(train_df["station"].unique())
+        test_stations = set(test_df["station"].unique())
         common_stations = train_stations.intersection(test_stations)
         
         self.log(f"📊 Common stations in both train and test: {len(common_stations)}")
@@ -482,4 +486,5 @@ class TemporalPrecipitationModelingPipeline:
 
 if __name__ == "__main__":
     pipeline = TemporalPrecipitationModelingPipeline()
+
     model, metrics = pipeline.run_temporal_pipeline(remote_source='ERA5')
