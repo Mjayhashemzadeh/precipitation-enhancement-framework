@@ -1,4 +1,4 @@
-# Precipitation Enhancement Framework (Sample Repository)
+# Precipitation Enhancement Framework
 
 This repository provides **sample data (2024 only)**, **Google Earth Engine scripts**, 
 and **machine learning pipelines** supporting the paper:
