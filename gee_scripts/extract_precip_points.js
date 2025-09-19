@@ -1,5 +1,5 @@
 // 1. Define your stations as FeatureCollection
-var stations = ee.FeatureCollection("your_station_points");
+var stations = ee.FeatureCollection("users/yourusername/station_points");
 
 // Generate monthly date list
 var makeMonthlyList = function(start, end) {
