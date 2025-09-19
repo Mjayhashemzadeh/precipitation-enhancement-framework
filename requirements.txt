@@ -4,7 +4,7 @@ pandas
 scikit-learn
 scipy
 
-# Machine learning models
+# Machine learning and deep learning models
 xgboost
 torch
 pytorch-tabnet
