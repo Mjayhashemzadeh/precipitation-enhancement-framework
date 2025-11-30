@@ -4,7 +4,7 @@ This repository provides **sample data (2024 only)**, **Google Earth Engine scri
 and **machine learning pipelines** supporting the paper:
 
 > Hashemzadeh Ghalhari et al. (2025)  
-> "A Comprehensive Framework for Enhancing Satellite-Based Precipitation Estimates Using Attention-Based Deep Learning"
+> "Enhancing Remote Sensing Precipitation Estimation Using Attention-Based Deep Learning: A Multi-Scale Validation Framework"
 
 ---
 
